@@ -1,4 +1,5 @@
 <%- include("partials/header"); -%>
+<body>
 <form class="" action="/DeleteMedia" method="post">
   <% items.forEach(function(item) {%>
       <img src='data:<%= item.contentType %>;base64,<%= item.imageBase64 %>' height="300" width="400">
