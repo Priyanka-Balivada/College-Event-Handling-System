@@ -231,9 +231,90 @@ app.get("/DisplayStudentRespresentative",function(req,res){
  	})
 });
 
+app.get("/UpdateStudentRepresentatives",function(req,res){
+ StudentRespresentative.find({},function(err, items){
+		if (err) {
+			console.log(err);
+			res.status(500).send('An error occurred', err);
+		}
+		else {
+			res.render('updateStudentRepresentatives', { items: items });
+		}
+	})
 
 
+	//res.render('DisplayMedia', { items: items });
 
+});
+
+app.post("/UpdateStudentRepresentatives",function(req,res){
+ if(req.body.hasOwnProperty("edit")){
+   StudentRespresentative.findOne({_id:req.body.edit}, function(err,representative) {
+     if (!err) {
+       res.render("editStudentRepresentatives",{
+         student:representative
+       });
+     }
+   });
+
+ }
+ else{
+   var deleteID=req.body.delete;
+   console.log(deleteID);
+   StudentRespresentative.findByIdAndRemove(deleteID, function(err) {
+     if (!err) {
+       console.log("Successfully deleted checked item");
+       res.redirect("/UpdateStudentRepresentatives");
+     }
+   });
+ }
+});
+
+app.post("/editStudentRepresentatives",store.array('pics',1),function(req,res,next){
+  const files=req.files;
+
+  if(!files){
+    const error=new Error('Please choose files');
+    error.httpStatusCode=400;
+    return next(error);
+  }
+
+  //convert images into base64 encoding
+
+  let imgArray=files.map(function(file){
+    let img=fs.readFileSync(file.path)
+
+    return encode_image=img.toString('base64');
+  })
+
+  let result=imgArray.map(function(src,index){
+    //create object to store media into the collection
+    var images={
+      filename:files[index].originalname,
+      contentType:files[index].mimetype,
+      imageBase64:src,
+      name:req.body.name,
+      post:req.body.post,
+      email:req.body.email,
+      mobile:req.body.mobile
+    }
+
+    // let studentRespresentative=new StudentRespresentative(images);
+
+    StudentRespresentative.updateOne({_id:req.body.update},
+      images,
+      function(err,media) {
+      if (!err) {
+        console.log("Upload Successful");
+      }
+      else{
+        console.log("Upload Unsuccessful");
+      }
+    });
+    res.rredirect("/UpdateStudentRepresentatives");
+  })
+
+});
 
 
 
