@@ -36,7 +36,7 @@ const mediaSchema=new mongoose.Schema({
   }
 });
 
-const studentRespresentativeSchema=new mongoose.Schema({
+const respresentativeSchema=new mongoose.Schema({
   filename:{
     type:String,
     unique:true,
@@ -66,11 +66,15 @@ const studentRespresentativeSchema=new mongoose.Schema({
     type:Number,
     required:true
   }
-})
+});
+
 
 //models
 const Media = mongoose.model('media', mediaSchema);
-const StudentRespresentative = mongoose.model('studentRespresentative',studentRespresentativeSchema);
+const StudentRespresentative = mongoose.model('studentRespresentative',respresentativeSchema);
+const StudentVolunteer = mongoose.model('studentVolunteer',respresentativeSchema);
+const TeacherRepresentative = mongoose.model('teacherRepresentative',respresentativeSchema);
+
 
 //routes
 
@@ -169,7 +173,9 @@ app.post("/DeleteMedia",function(req,res){
 // ********************************** Student Representatives ***************************
 
 app.get("/UploadStudentRepresentatives",function(req,res){
-  res.render("uploadStudentRepresentatives");
+  res.render("uploadRepresentatives",{
+    path: "/UploadStudentRepresentatives"
+  });
 });
 
 app.post("/UploadStudentRepresentatives",store.array('pics',1),function(req,res,next){
@@ -226,7 +232,15 @@ app.get("/DisplayStudentRespresentative",function(req,res){
  			res.status(500).send('An error occurred', err);
  		}
  		else {
- 			res.render('coordinators',{ items: items });
+      StudentVolunteer.find({},function(err, items1){
+     		if (err) {
+     			console.log(err);
+     			res.status(500).send('An error occurred', err);
+     		}
+     		else {
+     			res.render('coordinators',{ items: items, volunteers:items1});
+     		}
+     	})
  		}
  	})
 });
@@ -238,7 +252,7 @@ app.get("/UpdateStudentRepresentatives",function(req,res){
 			res.status(500).send('An error occurred', err);
 		}
 		else {
-			res.render('updateStudentRepresentatives', { items: items });
+			res.render('updateRepresentatives', { path:"/UpdateStudentRepresentatives",items: items });
 		}
 	})
 
@@ -251,7 +265,8 @@ app.post("/UpdateStudentRepresentatives",function(req,res){
  if(req.body.hasOwnProperty("edit")){
    StudentRespresentative.findOne({_id:req.body.edit}, function(err,representative) {
      if (!err) {
-       res.render("editStudentRepresentatives",{
+       res.render("editRepresentatives",{
+         path:"/editStudentRepresentatives",
          student:representative
        });
      }
@@ -311,16 +326,316 @@ app.post("/editStudentRepresentatives",store.array('pics',1),function(req,res,ne
         console.log("Upload Unsuccessful");
       }
     });
-    res.rredirect("/UpdateStudentRepresentatives");
+    res.redirect("/UpdateStudentRepresentatives");
   })
 
 });
 
 
+// ********************************** Volunteers ***************************************
+
+app.get("/UploadVolunteer",function(req,res){
+  res.render("uploadRepresentatives",{
+    path: "/UploadVolunteer"
+  });
+});
+
+app.post("/UploadVolunteer",store.array('pics',1),function(req,res,next){
+  const files=req.files;
+
+  if(!files){
+    const error=new Error('Please choose files');
+    error.httpStatusCode=400;
+    return next(error);
+  }
+
+  //convert images into base64 encoding
+
+  let imgArray=files.map(function(file){
+    let img=fs.readFileSync(file.path)
+
+    return encode_image=img.toString('base64');
+  })
+
+  let result=imgArray.map(function(src,index){
+    //create object to store media into the collection
+    var images={
+      filename:files[index].originalname,
+      contentType:files[index].mimetype,
+      imageBase64:src,
+      name:req.body.name,
+      post:req.body.post,
+      email:req.body.email,
+      mobile:req.body.mobile
+    }
+
+    let studentVolunteer=new StudentVolunteer(images);
+
+    studentVolunteer.save(function(err,media) {
+      if (!err) {
+        console.log("Upload Successful");
+      }
+      else{
+        console.log("Upload Unsuccessful");
+      }
+    });
+
+  })
+
+  res.redirect("/DisplayVolunteer");
+
+});
 
 
+app.get("/DisplayVolunteer",function(req,res){
+  StudentVolunteer.find({},function(err, items){
+ 		if (err) {
+ 			console.log(err);
+ 			res.status(500).send('An error occurred', err);
+ 		}
+ 		else {
+ 			res.redirect("/DisplayStudentRespresentative");
+ 		}
+ 	})
+});
+
+app.get("/UpdateVolunteer",function(req,res){
+ StudentVolunteer.find({},function(err, items){
+		if (err) {
+			console.log(err);
+			res.status(500).send('An error occurred', err);
+		}
+		else {
+			res.render('updateRepresentatives', { path:"/UpdateVolunteer",items: items });
+		}
+	})
 
 
+	//res.render('DisplayMedia', { items: items });
+
+});
+
+app.post("/UpdateVolunteer",function(req,res){
+ if(req.body.hasOwnProperty("edit")){
+   StudentVolunteer.findOne({_id:req.body.edit}, function(err,representative) {
+     if (!err) {
+       res.render("editRepresentatives",{
+         path:"/editVolunteer",
+         student:representative
+       });
+     }
+   });
+
+ }
+ else{
+   var deleteID=req.body.delete;
+   console.log(deleteID);
+   StudentVolunteer.findByIdAndRemove(deleteID, function(err) {
+     if (!err) {
+       console.log("Successfully deleted checked item");
+       res.redirect("/UpdateVolunteer");
+     }
+   });
+ }
+});
+
+app.post("/editVolunteer",store.array('pics',1),function(req,res,next){
+  const files=req.files;
+
+  if(!files){
+    const error=new Error('Please choose files');
+    error.httpStatusCode=400;
+    return next(error);
+  }
+
+  //convert images into base64 encoding
+
+  let imgArray=files.map(function(file){
+    let img=fs.readFileSync(file.path)
+
+    return encode_image=img.toString('base64');
+  })
+
+  let result=imgArray.map(function(src,index){
+    //create object to store media into the collection
+    var images={
+      filename:files[index].originalname,
+      contentType:files[index].mimetype,
+      imageBase64:src,
+      name:req.body.name,
+      post:req.body.post,
+      email:req.body.email,
+      mobile:req.body.mobile
+    }
+
+    // let studentRespresentative=new StudentRespresentative(images);
+
+    StudentVolunteer.updateOne({_id:req.body.update},
+      images,
+      function(err,media) {
+      if (!err) {
+        console.log("Upload Successful");
+      }
+      else{
+        console.log("Upload Unsuccessful");
+      }
+    });
+    res.redirect("/UpdateVolunteer");
+  })
+
+});
+
+
+// **************************** Teacher Representative **************************************
+
+app.get("/UploadTeacherRepresentatives",function(req,res){
+  res.render("uploadRepresentatives",{
+    path: "/UploadTeacherRepresentatives"
+  });
+});
+
+app.post("/UploadTeacherRepresentatives",store.array('pics',1),function(req,res,next){
+  const files=req.files;
+
+  if(!files){
+    const error=new Error('Please choose files');
+    error.httpStatusCode=400;
+    return next(error);
+  }
+
+  //convert images into base64 encoding
+
+  let imgArray=files.map(function(file){
+    let img=fs.readFileSync(file.path)
+
+    return encode_image=img.toString('base64');
+  })
+
+  let result=imgArray.map(function(src,index){
+    //create object to store media into the collection
+    var images={
+      filename:files[index].originalname,
+      contentType:files[index].mimetype,
+      imageBase64:src,
+      name:req.body.name,
+      post:req.body.post,
+      email:req.body.email,
+      mobile:req.body.mobile
+    }
+
+    let teacherRespresentative=new TeacherRepresentative(images);
+
+    teacherRespresentative.save(function(err,media) {
+      if (!err) {
+        console.log("Upload Successful");
+      }
+      else{
+        console.log("Upload Unsuccessful");
+      }
+    });
+
+  })
+
+  res.redirect("/DisplayTeacherRespresentative");
+
+});
+
+
+app.get("/DisplayTeacherRespresentative",function(req,res){
+  TeacherRepresentative.find({},function(err, items){
+ 		if (err) {
+ 			console.log(err);
+ 			res.status(500).send('An error occurred', err);
+ 		}
+ 		else {
+     			res.render('teacherRepresentatives',{ items: items});
+     	}
+ 	})
+});
+
+app.get("/UpdateTeacherRepresentatives",function(req,res){
+ TeacherRepresentative.find({},function(err, items){
+		if (err) {
+			console.log(err);
+			res.status(500).send('An error occurred', err);
+		}
+		else {
+			res.render('updateRepresentatives', { path:"/UpdateTeacherRepresentatives",items: items });
+		}
+	})
+
+
+	//res.render('DisplayMedia', { items: items });
+
+});
+
+app.post("/UpdateTeacherRepresentatives",function(req,res){
+ if(req.body.hasOwnProperty("edit")){
+   TeacherRepresentative.findOne({_id:req.body.edit}, function(err,representative) {
+     if (!err) {
+       res.render("editRepresentatives",{
+         path:"/editTeacherRepresentatives",
+         student:representative
+       });
+     }
+   });
+
+ }
+ else{
+   var deleteID=req.body.delete;
+   console.log(deleteID);
+   TeacherRepresentative.findByIdAndRemove(deleteID, function(err) {
+     if (!err) {
+       console.log("Successfully deleted checked item");
+       res.redirect("/UpdateTeacherRepresentatives");
+     }
+   });
+ }
+});
+
+app.post("/editTeacherRepresentatives",store.array('pics',1),function(req,res,next){
+  const files=req.files;
+
+  if(!files){
+    const error=new Error('Please choose files');
+    error.httpStatusCode=400;
+    return next(error);
+  }
+
+  //convert images into base64 encoding
+
+  let imgArray=files.map(function(file){
+    let img=fs.readFileSync(file.path)
+
+    return encode_image=img.toString('base64');
+  })
+
+  let result=imgArray.map(function(src,index){
+    //create object to store media into the collection
+    var images={
+      filename:files[index].originalname,
+      contentType:files[index].mimetype,
+      imageBase64:src,
+      name:req.body.name,
+      post:req.body.post,
+      email:req.body.email,
+      mobile:req.body.mobile
+    }
+
+    TeacherRepresentative.updateOne({_id:req.body.update},
+      images,
+      function(err,media) {
+      if (!err) {
+        console.log("Upload Successful");
+      }
+      else{
+        console.log("Upload Unsuccessful");
+      }
+    });
+    res.redirect("/UpdateTeacherRepresentatives");
+  })
+
+});
 
 
 

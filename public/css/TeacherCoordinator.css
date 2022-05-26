@@ -10,7 +10,7 @@
 .home{
   height: 750px;
   width:100%;
-  background-image:url("Staffbg.jpg");
+  background-image:url("/images/Staffbg.jpg");
   background-repeat: no-repeat;
   background-size: cover;
 }

@@ -57,78 +57,15 @@
 </div>
 
       <div class="row">
+        <% volunteers.forEach(function(volunteer) {%>
       <div class="column">
-      <center> <img src="pic1.png" alt="Snow" style="width:70%"></center>
-        <h2><center>am p2 am p2 am p2<br /><center><h2>aher</h2></center></center></h2>
+      <center>  <img src='data:<%= volunteer.contentType %>;base64,<%= volunteer.imageBase64 %>' alt="image" style="width:70%"></center>
+          <h2><center><br /><%=volunteer.post%><center><h2><%=volunteer.name%></h2></center></center></h2>
       </div>
-      <div class="column">
-      <center>
-      <center>  <img src="pic2.png" alt="Forest" style="width:70%"></center>
-          <h2><center>am p2 am p2 am p2<br /><center><h2>aher</h2></center></center></h2>
-      </div>
-      <div class="column">
-      <center>  <img src="pic2.png" alt="Forest" style="width:70%"></center>
-          <h2><center>am p2 am p2 am p2<br /><center><h2>aher</h2></center></center></h2>
-      </div>
-      <div class="column">
-      <center>  <img src="pic2.png" alt="Forest" style="width:70%"></center>
-          <h2><center>am p2 am p2 am p2<br /><center><h2>aher</h2></center></center></h2>
-      </div>
+        <%})%>
     </div>
-    <div class="row">
-    <div class="column">
-      <center><img src="pic2.png" alt="Forest" style="width:70%"></center>
-        <h2><center>am p2 am p2 am p2<br /><center><h2>aher</h2></center></center></h2>
-    </div>
-    <div class="column">
-      <center><img src="pic2.png" alt="Forest" style="width:70%"></center>
-        <h2><center>am p2 am p2 am p2<br /><center><h2>aher</h2></center></center></h2>
-    </div>
-    <div class="column">
-    <center>  <img src="pic2.png" alt="Forest" style="width:70%"></center>
-        <h2><center>am p2 am p2 am p2<br /><center><h2>aher</h2></center></center></h2>
-    </div>
-    <div class="column">
-    <center><img src="pic2.png" alt="Forest" style="width:70%"></center>
-        <h2><center>am p2 am p2 am p2<br /><center><h2>aher</h2></center></center></h2>
-    </div>
-  </div>
-  <div class="row">
-  <div class="column">
-  <center>  <img src="pic2.png" alt="Forest" style="width:70%"></center>
-      <h2><center>am p2 am p2 am p2<br /><center><h2>aher</h2></center></center></h2>
-  </div>
-  <div class="column">
-  <center>  <img src="pic2.png" alt="Forest" style="width:70%"></center>
-      <h2><center>am p2 am p2 am p2<br /><center><h2>aher</h2></center></center></h2>
-  </div>
-  <div class="column">
-<center>  <img src="pic2.png" alt="Forest" style="width:70%"></center>
-      <h2><center>am p2 am p2 am p2<br /><center><h2>aher</h2></center></center></h2>
-  </div>
-  <div class="column">
-  <center>  <img src="pic2.png" alt="Forest" style="width:70%"></center>
-      <h2><center>am p2 am p2 am p2<br /><center><h2>aher</h2></center></center></h2>
-  </div>
-</div>
-<div class="row">
-<div class="column">
-<center>  <img src="pic2.png" alt="Forest" style="width:70%"></center>
-    <h2><center>am p2 am p2 am p2<br /><center><h2>aher</h2></center></center></h2>
-</div>
-<div class="column">
-<center>  <img src="pic2.png" alt="Forest" style="width:70%"></center>
-    <h2><center>am p2 am p2 am p2<br /><center><h2>aher</h2></center></center></h2>
-</div>
-<div class="column">
-<center>  <img src="pic2.png" alt="Forest" style="width:70%"></center>
-    <h2><center>am p2 am p2 am p2<br /><center><h2>aher</h2></center></center></h2>
-</div>
-<div class="column">
-  <center><img src="pic2.png" alt="Forest" style="width:70%"></center>
-    <h2><center>am p2 am p2 am p2<br /><center><h2>aher</h2></center></center></h2>
-</div>
-</div>
+
+
 
     </section>
     <script src="./Font-Awesome/all.min.js"></script>
