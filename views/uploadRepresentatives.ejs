@@ -1,22 +1,51 @@
-<%- include("partials/header"); -%>
-<body>
-<form class="" action="<%=path%>" method="post" enctype="multipart/form-data">
-  <input type="file" name="pics" id="formFile">
-  <br>
-  <br>
-  <input type="text" name="name" placeholder="Name">
-  <br>
-  <br>
-  <input type="text" name="post" placeholder="Post">
-  <br>
-  <br>
-  <input type="email" name="email" placeholder="Email">
-  <br>
-  <br>
-  <input type="number" name="mobile" placeholder="Mobile No.">
-  <br>
-  <br>
-  <button type="submit" class="btn btn-warning" name="button" value="Upload Representative">Upload</button>
+<!DOCTYPE>
+<html>
+<head>
+  <style>
+    .button1 {
+    background-color: #04AA6D; /* Green */
+    border-radius: 5px;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+  .edit{
+    padding: 40px;
+    margin-top: 90px;
+  }
 
-</form>
-<%- include("partials/footer"); -%>
+  </style>
+
+
+  </head>
+<body style="background-color:powderblue;">
+<center>
+  <form class="edit" action="<%=path%>" method="post" enctype="multipart/form-data" style="width:30%;background-color:pink;border:1px solid black;">
+    <input type="file" name="pics" id="formFile">
+    <br>
+    <br>
+    <input type="text" name="name" placeholder="Name">
+    <br>
+    <br>
+    <input type="text" name="post" placeholder="Post">
+    <br>
+    <br>
+    <input type="email" name="email" placeholder="Email">
+    <br>
+    <br>
+    <input type="number" name="mobile" placeholder="Mobile No.">
+    <br>
+    <br>
+    <button type="submit" class="btn btn-warning" name="button" value="Upload Representative">Upload</button>
+
+  </form>
+
+</center>
+
+</body>
+</html>

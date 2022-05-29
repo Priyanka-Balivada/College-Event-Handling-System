@@ -5,6 +5,7 @@ const path=require("path");
 const store=require("./middleware/multer");
 const fs=require('fs');
 const bodyParser = require("body-parser");
+const nodemailer = require('nodemailer');
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine','ejs');
@@ -87,7 +88,7 @@ app.get("/",function(req,res){
  			res.status(500).send('An error occurred', err);
  		}
  		else {
- 			res.render('home',{ items: items });
+ 			res.render('index',{ items: items });
  		}
  	})
 
@@ -135,7 +136,7 @@ app.post("/UploadMedia",store.array('medias',20),function(req,res,next){
 
   })
 
-  res.redirect("/");
+  res.redirect("/adminDashboard#Media");
 
   //res.json(imgArray);
 });
@@ -164,7 +165,7 @@ app.post("/DeleteMedia",function(req,res){
   Media.findByIdAndRemove(deleteID, function(err) {
     if (!err) {
       console.log("Successfully deleted checked item");
-      res.redirect("/DeleteMedia");
+      res.redirect("/adminDashboard#Media");
     }
   });
 });
@@ -220,7 +221,7 @@ app.post("/UploadStudentRepresentatives",store.array('pics',1),function(req,res,
 
   })
 
-  res.redirect("/DisplayStudentRespresentative");
+  res.redirect("/adminDashboard#StudRepre");
 
 });
 
@@ -279,7 +280,7 @@ app.post("/UpdateStudentRepresentatives",function(req,res){
    StudentRespresentative.findByIdAndRemove(deleteID, function(err) {
      if (!err) {
        console.log("Successfully deleted checked item");
-       res.redirect("/UpdateStudentRepresentatives");
+       res.redirect("/adminDashboard#StudRepre");
      }
    });
  }
@@ -326,7 +327,7 @@ app.post("/editStudentRepresentatives",store.array('pics',1),function(req,res,ne
         console.log("Upload Unsuccessful");
       }
     });
-    res.redirect("/UpdateStudentRepresentatives");
+    res.redirect("/adminDashboard#StudRepre");
   })
 
 });
@@ -382,7 +383,7 @@ app.post("/UploadVolunteer",store.array('pics',1),function(req,res,next){
 
   })
 
-  res.redirect("/DisplayVolunteer");
+  res.redirect("/adminDashboard#StudRepre");
 
 });
 
@@ -433,7 +434,7 @@ app.post("/UpdateVolunteer",function(req,res){
    StudentVolunteer.findByIdAndRemove(deleteID, function(err) {
      if (!err) {
        console.log("Successfully deleted checked item");
-       res.redirect("/UpdateVolunteer");
+       res.redirect("/adminDashboard#StudRepre");
      }
    });
  }
@@ -480,7 +481,7 @@ app.post("/editVolunteer",store.array('pics',1),function(req,res,next){
         console.log("Upload Unsuccessful");
       }
     });
-    res.redirect("/UpdateVolunteer");
+    res.redirect("/adminDashboard#StudRepre");
   })
 
 });
@@ -536,7 +537,7 @@ app.post("/UploadTeacherRepresentatives",store.array('pics',1),function(req,res,
 
   })
 
-  res.redirect("/DisplayTeacherRespresentative");
+  res.redirect("/adminDashboard/TeacherRepre");
 
 });
 
@@ -587,7 +588,7 @@ app.post("/UpdateTeacherRepresentatives",function(req,res){
    TeacherRepresentative.findByIdAndRemove(deleteID, function(err) {
      if (!err) {
        console.log("Successfully deleted checked item");
-       res.redirect("/UpdateTeacherRepresentatives");
+       res.redirect("/adminDashboard/TeacherRepre");
      }
    });
  }
@@ -632,18 +633,424 @@ app.post("/editTeacherRepresentatives",store.array('pics',1),function(req,res,ne
         console.log("Upload Unsuccessful");
       }
     });
-    res.redirect("/UpdateTeacherRepresentatives");
+    res.redirect("/adminDashboard/TeacherRepre");
   })
 
 });
 
 
+// **************************************************** Login ***********************************************
+
+//Craeting a password
+var password = "";
+var role;
+const BreakError = {};
+const Break = {};
+function genPassword() {
+   var chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+   var passwordLength = 6;
+
+for (var i = 0; i <= passwordLength; i++) {
+  var randomNumber = Math.floor(Math.random() * chars.length);
+  password += chars.substring(randomNumber, randomNumber +1);
+ }
+       console.log(password)
+}
+
+
+let mailTransporter = nodemailer.createTransport({
+  service: "gmail",
+  auth:{
+    user: "aishwaryaauti19@gmail.com",
+    pass: "Aishwarya@19"
+  }
+})
+
+app.set('view engine','ejs');
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(express.static(__dirname+'/public'));
+mongoose.connect("mongodb://localhost:27017/EventDB");
+
+
+const studentSchema = {
+  username: {
+    type: String,
+    unique: true
+  },
+  email: {
+      type: String,
+      unique: true
+  },
+  password: String
+};
+
+const Student = mongoose.model("Student", studentSchema);
+
+const adminSchema = {
+  username: String,
+  password: String
+};
+
+const Admin = mongoose.model("Admin", adminSchema);
+//Adding content
+const account = new  Admin({
+username : "Admin",
+password  : "Admin"
+});
+
+Admin.insertMany(account, function(err){
+  if(err){
+    console.log(err);
+  } else{
+    console.log("Succefully Saved");
+  }
+});
 
 
 
 
+const adminProfileSchema = {
+  title: String,
+  link: String
+};
+
+const AdminProfile = mongoose.model("AdminProfile", adminProfileSchema);
+
+//Adding content
+const choice1 = new AdminProfile ({
+  title: "Welcome",
+  link: ""
+});
+const choice2 = new AdminProfile ({
+  title: "Change a password",
+  link: "/changePassword"
+});
+const choice3 = new AdminProfile ({
+  title: "Post a Event",
+  link: "/postEvent"
+});
+const choice4 = new AdminProfile ({
+  title: "Delete a Event",
+  link: "/deleteEvent"
+});
+
+const defaultItems3 = [choice1, choice2,choice3,choice4];
+
+AdminProfile.insertMany(defaultItems3, function(err){
+  if(err){
+    console.log(err);
+  } else{
+    console.log("Succefully Saved");
+  }
+});
+
+const studentProfileSchema = {
+  title: String,
+  link: String
+};
+
+const StudentProfile = mongoose.model("StudentProfile", studentProfileSchema);
+
+//Adding content
+const item1 = new StudentProfile ({
+  title: "Welcome",
+  link: ""
+});
+const item2 = new StudentProfile ({
+  title: "Change a password",
+  link: "/changePassword"
+});
+
+const defaultItems1 = [item1, item2];
+
+StudentProfile.insertMany(defaultItems1, function(err){
+  if(err){
+    console.log(err);
+  } else{
+    console.log("Succefully Saved");
+  }
+});
+
+const representiveProfileSchema = {
+  title: String,
+  link: String
+};
+
+const RepresentiveProfile = mongoose.model("RepresentiveProfile", representiveProfileSchema);
+
+//Adding content
+const list1 = new  RepresentiveProfile({
+  title: "Welcome",
+  link: ""
+});
+
+const list2 = new RepresentiveProfile ({
+  title: "Change a password",
+  link: "/changePassword"
+});
+
+const list3 = new RepresentiveProfile ({
+  title: "Post Event",
+  link: "/changePassword"
+});
+
+const defaultItems2 = [list1, list2, list3];
+
+RepresentiveProfile.insertMany(defaultItems2, function(err){
+  if(err){
+    console.log(err);
+  } else{
+    console.log("Succefully Saved");
+  }
+});
+
+const tRepresentiveProfileSchema = {
+  title: String,
+  link: String
+};
+
+const TRepresentiveProfile = mongoose.model("TRepresentiveProfile", tRepresentiveProfileSchema);
+
+//Adding content
+const data1 = new TRepresentiveProfile ({
+  title: "Welcome",
+  link: ""
+});
+const data2 = new TRepresentiveProfile ({
+  title: "Change a password",
+  link: "/changePassword"
+});
+
+const defaultItems4 = [data1, data2];
+
+TRepresentiveProfile.insertMany(defaultItems4, function(err){
+  if(err){
+    console.log(err);
+  } else{
+    console.log("Succefully Saved");
+  }
+});
 
 
+
+const representiveSchema = {
+  email: {
+      type: String,
+      unique: true
+  },
+  password: String,
+  role: String
+};
+
+const Representive = mongoose.model("Representive", representiveSchema);
+
+app.post("/Studentregister", function(req, res){
+  const student = new Student({
+    username: req.body.username,
+    email: req.body.email,
+    password: req.body.password
+
+  });
+  // Student.findOne({
+  //   username: req.body.username,
+  //   password: req.body.password,
+  // }, function(err, student) {
+  // try{
+  // if (err) {
+    student.save(function(err){
+    if (!err){
+      var email= student.email;
+      let details ={
+        from: "aishwaryaauti19@gmail.com",
+        to: email,
+        subject: "About Account register",
+        text: "Account Created  Successful"
+      }
+
+      mailTransporter.sendMail(details,(err)=>{
+        if(err){
+          console.log("error", err);
+        }
+        else{
+          console.log("Successful")
+        }
+      })
+        res.redirect("/Login");
+    }
+  })
+});
+
+app.post("/representiveRegister", function(req, res){
+genPassword();
+console.log(password);
+  const representive = new Representive({
+    email: req.body.email,
+    role: req.body.role,
+    password: password
+  });
+  //console.log(password);
+  representive.save(function(err){
+    if (!err){
+
+      var email= representive.email;
+      var pass= representive.password;
+      role= representive.role;
+      console.log(role);
+      let details ={
+        from: "aishwaryaauti19@gmail.com",
+        to: email,
+        subject: "About Account register",
+        html:"<h2> Hii! There</h2><h3>Your account creates Successfullly on GPP Events as " +role+ " Representives.<br>Remeber Your Username and password<br>Username: "+email+"<br>Password: "+pass+"."
+      }
+
+      mailTransporter.sendMail(details,(err)=>{
+        if(err){
+          console.log("error", err);
+        }
+        else{
+
+          console.log("Successful")
+        }
+      })
+        res.render("home", {items: defaultItems3});
+    }
+  });
+});
+
+
+app.get("/representiveRegister",function(req,res){
+  res.render("AdminLogin");
+});
+
+app.get("/Login",function(req,res){
+  res.render("Login", {success:''});
+});
+
+app.post("/Login", function(req, res) {
+  Student.findOne({
+    username: req.body.username,
+    password: req.body.password,
+  }, function(err, student) {
+    if (!err) {
+      if (student) {
+        res.render("home", {items: defaultItems1});
+
+        var email= student.email;
+        let details ={
+          from: "aishwaryaauti19@gmail.com",
+          to: email,
+          subject: "About Login",
+          text: "Login Successful"
+        }
+
+        mailTransporter.sendMail(details,(err)=>{
+          if(err){
+            console.log("error", err);
+          }
+          else{
+            console.log("Successful")
+          }
+        })
+      }
+    }
+  })
+
+  Admin.findOne({
+    username: req.body.username,
+    password: req.body.password,
+  }, function(err, student) {
+    if (!err) {
+      if (student) {
+        res.render("home", {items: defaultItems3});
+      }
+    }
+  })
+
+  Representive.findOne({
+    email : req.body.username,
+    password: req.body.password,
+  }, function(err, representive) {
+   try{
+    if (!err) {
+      if (representive) {
+        if(role=="Student"){
+           console.log("Student Login")
+           res.render("home", {items: defaultItems2});
+        }
+      else{
+        console.log("Teacher Login")
+        res.render("home" , {items: defaultItems4});
+      }
+
+
+        var email= representive.email;
+        let details ={
+          from: "aishwaryaauti19@gmail.com",
+          to: email,
+          subject: "About Login",
+          html: "<h2>Hii There!!</h2><h3>You have Successfullly Login on GPP Events"
+        }
+
+        mailTransporter.sendMail(details,(err)=>{
+          if(err){
+            console.log("error", err);
+          }
+          else{
+            console.log("Successful")
+          }
+        })
+      }
+    }
+    throw BreakError;
+  }
+  catch(BreakError){
+        res.render("Login", {success:"Inavlid username and password"})
+
+    }
+  })
+});
+
+
+
+
+// ********************** Admin Dashboard *******************************
+app.get("/adminDashboard",function(req,res){
+  Media.find({},function(err, medias){
+ 		if (err) {
+ 			console.log(err);
+ 			res.status(500).send('An error occurred', err);
+ 		}
+ 		else {
+      TeacherRepresentative.find({},function(err, teachers){
+        if (err) {
+          console.log(err);
+          res.status(500).send('An error occurred', err);
+        }
+        else {
+          StudentRespresentative.find({},function(err, students){
+            if (err) {
+              console.log(err);
+              res.status(500).send('An error occurred', err);
+            }
+            else {
+              StudentVolunteer.find({},function(err,volunteers){
+                if (err) {
+                  console.log(err);
+                  res.status(500).send('An error occurred', err);
+                }
+                else {
+                  res.render('adminDashboard',{ items: medias,teachers:teachers,students:students,volunteers:volunteers });
+                }
+              })
+            }
+          })
+          }
+      });
+ 		}
+ 	});
+
+
+});
 
 
 

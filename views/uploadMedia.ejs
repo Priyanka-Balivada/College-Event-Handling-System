@@ -1,8 +1,33 @@
-<%- include("partials/header"); -%>
-<body>
-<form class="" action="/UploadMedia" method="post" enctype="multipart/form-data">
-  <input type="file" name="medias" id="formFile" multiple>
-  <button type="submit" class="btn btn-warning" name="button" value="Upload Media">Upload</button>
+
+<!DOCTYPE>
+<html>
+<head>
+  <style>
+    .button1 {
+    background-color: #04AA6D; /* Green */
+    border-radius: 5px;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+  .edit{
+    padding: 40px;
+    margin-top: 90px;
+  }
+
+  </style>
+  </head>
+<body style="background-color:powderblue;">
+<center>
+<form class="edit" action="/UploadMedia" method="post" enctype="multipart/form-data" style="width:30%;background-color:pink;border:1px solid black;">
+  <input type="file" name="medias" id="formFile" multiple><br /><br />
+  <button type="submit" class="button1" name="button" value="Upload Media">Upload</button>
 
 </form>
-<%- include("partials/footer"); -%>
+</body>
+</html>

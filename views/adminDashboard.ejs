@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Boxicons -->
+	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+	<!-- My CSS -->
+	<link rel="stylesheet" href="/css/adminDashboard.css">
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+	<title>AdminHub</title>
+</head>
+<body>
+
+
+	<!-- SIDEBAR -->
+	<section id="sidebar">
+		<a href="#" class="brand">
+			<i class='bx bxs-smile'></i>
+			<span class="text">AdminHub</span>
+		</a>
+		<ul class="side-menu top">
+			<li class="active">
+				<a href="#TeacherRepre">
+					<i class='bx bxs-dashboard' ></i>
+					<span class="text">Teacher Representative</span>
+				</a>
+			</li>
+			<li>
+				<a href="#StudRepre">
+					<i class='bx bxs-shopping-bag-alt' ></i>
+					<span class="text">Student Representative</span>
+				</a>
+			</li>
+			<li>
+				<a href="#Media">
+					<i class='bx bxs-doughnut-chart' ></i>
+					<span class="text">Media</span>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<i class='bx bxs-message-dots' ></i>
+					<span class="text">Client Reviews</span>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<i class='bx bxs-group' ></i>
+					<span class="text">Result</span>
+				</a>
+			</li>
+		</ul>
+		<ul class="side-menu">
+			<li>
+				<a href="#">
+					<i class='bx bxs-cog' ></i>
+					<span class="text">Poll Result</span>
+				</a>
+			</li>
+			<li>
+				<a href="#" class="logout">
+					<i class='bx bxs-log-out-circle' ></i>
+					<span class="text">Logout</span>
+				</a>
+			</li>
+		</ul>
+	</section>
+	<!-- SIDEBAR -->
+
+
+
+	<!-- CONTENT -->
+	<section  id="content">
+		<!-- NAVBAR -->
+		<nav>
+			<i class='bx bx-menu' ></i>
+			<a href="#" class="nav-link">Categories</a>
+			<form action="#">
+				<div class="form-input">
+					<input type="search" placeholder="Search...">
+					<button type="submit" class="search-btn"><i class='bx bx-search' ></i></button>
+				</div>
+			</form>
+			<input type="checkbox" id="switch-mode" hidden>
+			<label for="switch-mode" class="switch-mode"></label>
+			<a href="#" class="notification">
+				<i class='bx bxs-bell' ></i>
+				<span class="num">8</span>
+			</a>
+			<a href="#" class="profile">
+				<img src="img/people.png">
+			</a>
+		</nav>
+		<!-- NAVBAR -->
+
+		<!-- MAIN -->
+		<section class="TeacherRepre" id="TeacherRepre">
+		<main>
+		  <div class="head-title">
+		    <div class="left">
+		        <h1>Teacher Representative</h1>
+		      <ul class="breadcrumb">
+		        <li>
+		          <a href="#">Dashboard</a>
+		        </li>
+		        <li><i class='bx bx-chevron-right' ></i></li>
+		        <li>
+		          <a class="active" href="#">Home</a>
+		        </li>
+		      </ul>
+		    </div>
+
+
+		  </div>
+
+		  <!--collage heads -->
+		  <div class="table-data">
+		    <div class="order">
+		      <div class="head">
+		        <h3>Collage Heads</h3>
+		        <i class='bx bx-search' ></i>
+		        <i class='bx bx-filter' ></i>
+						<form class="" action="/adminDashboard" enctype="multipart/form-data">
+					 <button type="submit" class="btn btn-warning" name="button" value="Upload Media">Upload</button>
+					 </form>
+		      </div>
+		      <table>
+		        <thead>
+		          <tr>
+		            <th>Profile</th>
+		            <th>Info</th>
+		            <th>Activity</th>
+		          </tr>
+		        </thead>
+		        <tbody>
+		          <tr>
+		            <td>
+		              <img src="images/pricipal.jpg">
+		            </td>
+		            <td><p>
+		              <h4>Dr V Bandal</h4>
+		              <h5>Principal,GPP</h5>
+		            </p></td>
+		            <td> <button type="button" class="btn btn-success">Edit</button></td>
+		            <td><button type="button" class="btn btn-warning">Delete</button></td>
+		          </tr>
+		          <tr>
+		            <td>
+		              <img src="images/CMHOD_P.jpg">
+		            </td>
+		            <td><p>
+		              <h4>S B Nikam</h4>
+		              <h5>HOD,Computer Engineer</h5>
+		            </p></td>
+		            <td> <button type="button" class="btn btn-success">Edit</button></td>
+		            <td><button type="button" class="btn btn-warning">Delete</button></td>
+		          </tr>
+		          <tr>
+		            <td>
+		              <img src="images/HODIT.jpg">
+		            </td>
+		            <td><p>
+		              <h4>M U Kokate</h4>
+		              <h5>HOD,Information Technology</h5>
+		            </p></td>
+		            <td> <button type="button" class="btn btn-success">Edit</button></td>
+		            <td><button type="button" class="btn btn-warning">Delete</button></td>
+		          </tr>
+		        </tbody>
+		      </table>
+		    </div>
+		  </div>
+
+		  <!-- teacher -->
+		  <div class="table-data">
+		    <div class="order">
+		      <div class="head">
+		        <h3>Teacher Representative</h3>
+		        <i class='bx bx-search' ></i>
+		        <i class='bx bx-filter' ></i>
+						<form class="" action="/UploadTeacherRepresentatives" enctype="multipart/form-data">
+					 <button type="submit" class="btn btn-warning" name="button" value="Upload Media">Upload</button>
+					 </form>
+		      </div>
+		      <table>
+		        <thead>
+		          <tr>
+		            <th>Profile</th>
+		            <th>Info</th>
+		            <th>Activity</th>
+		          </tr>
+		        </thead>
+		        <tbody>
+							<% teachers.forEach(function(item) {%>
+							<form class="" action="/UpdateTeacherRepresentatives" method="post">
+							<tr>
+								<td>
+									<img src='data:<%= item.contentType %>;base64,<%= item.imageBase64 %>'>
+								</td>
+								<td><p>
+									<h4><%=item.name%></h4>
+									<h5><%=item.post%></h5>
+								</p></td>
+								<input type="hidden" name="ID" value="<%=item._id%>">
+								<td> <button type="submit" name="edit" value="<%=item._id%>" class="btn btn-success">Edit</button></td>
+								<td><button type="submit" name="delete" value="<%=item._id%>" class="btn btn-warning">Delete</button></td>
+							</tr>
+							</form>
+						<%})%>
+
+		        </tbody>
+		      </table>
+		    </div>
+		  </div>
+
+		  <!-- end teacher -->
+		</main>
+		</section>
+		<!-- MAIN -->
+		</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<!-- CONTENT -->
+		<section  id="content">
+			<!-- NAVBAR -->
+
+		<section class="StudRepre" id="StudRepre">
+			<!-- MAIN -->
+			<main>
+				<div class="head-title">
+					<div class="left">
+							<h1>Student Representative</h1>
+						<ul class="breadcrumb">
+							<li>
+								<a href="#">Dashboard</a>
+							</li>
+							<li><i class='bx bx-chevron-right' ></i></li>
+							<li>
+								<a class="active" href="#">Home</a>
+							</li>
+						</ul>
+					</div>
+
+				</div>
+
+				<!--collage heads -->
+				<div class="table-data">
+					<div class="order">
+						<div class="head">
+							<h3>Student Re-presentatives</h3>
+							<i class='bx bx-search' ></i>
+							<i class='bx bx-filter' ></i>
+							<form class="" action="/UploadStudentRepresentatives" enctype="multipart/form-data">
+							<button type="submit" class="btn btn-warning" name="button" value="Upload Media">Upload</button>
+							</form>
+						</div>
+						<table>
+							<thead>
+								<tr>
+									<th>Profile</th>
+									<th>Info</th>
+									<th>Activity</th>
+								</tr>
+							</thead>
+							<tbody>
+
+								<% students.forEach(function(item) {%>
+								<form class="" action="/UpdateStudentRepresentatives" method="post">
+								<tr>
+									<td>
+										<img src='data:<%= item.contentType %>;base64,<%= item.imageBase64 %>'>
+									</td>
+									<td><p>
+										<h4><%=item.name%></h4>
+										<h5><%=item.post%></h5>
+									</p></td>
+									<input type="hidden" name="ID" value="<%=item._id%>">
+									<td> <button type="submit" name="edit" value="<%=item._id%>" class="btn btn-success">Edit</button></td>
+									<td><button type="submit" name="delete" value="<%=item._id%>" class="btn btn-warning">Delete</button></td>
+								</tr>
+								</form>
+							<%})%>
+
+							</tbody>
+						</table>
+					</div>
+				</div>
+
+				<!-- teacher -->
+				<div class="table-data">
+					<div class="order">
+						<div class="head">
+							<h3>Volenteers</h3>
+							<i class='bx bx-search' ></i>
+							<i class='bx bx-filter' ></i>
+							<form class="" action="/UploadVolunteer" enctype="multipart/form-data">
+							<button type="submit" class="btn btn-warning" name="button" value="Upload Media">Upload</button>
+							</form>
+						</div>
+						<table>
+							<thead>
+								<tr>
+									<th>Profile</th>
+									<th>Info</th>
+									<th>Activity</th>
+								</tr>
+							</thead>
+							<tbody>
+								<% volunteers.forEach(function(item) {%>
+								<form class="" action="/UpdateVolunteer" method="post">
+								<tr>
+									<td>
+										<img src='data:<%= item.contentType %>;base64,<%= item.imageBase64 %>'>
+									</td>
+									<td><p>
+										<h4><%=item.name%></h4>
+										<h5><%=item.post%></h5>
+									</p></td>
+									<input type="hidden" name="ID" value="<%=item._id%>">
+									<td> <button type="submit" name="edit" value="<%=item._id%>" class="btn btn-success">Edit</button></td>
+									<td><button type="submit" name="delete" value="<%=item._id%>" class="btn btn-warning">Delete</button></td>
+								</tr>
+								</form>
+							<%})%>
+
+
+
+							</tbody>
+						</table>
+					</div>
+				</div>
+
+				<!-- end teacher -->
+			</main>
+		</section>
+
+			<!-- MAIN -->
+		</section>
+
+		<!-- CONTENT -->
+		<section  id="content">
+			<!-- NAVBAR -->
+
+		<section class="Media" id="Media">
+			<!-- MAIN -->
+			<main>
+				<div class="head-title">
+					<div class="left">
+							<h1>Event Media</h1>
+						<ul class="breadcrumb">
+							<li>
+								<a href="#">Dashboard</a>
+							</li>
+							<li><i class='bx bx-chevron-right' ></i></li>
+							<li>
+								<a class="active" href="#">Home</a>
+							</li>
+						</ul>
+					</div>
+					<form class="" action="/UploadMedia" enctype="multipart/form-data">
+	        <button type="submit" class="btn btn-warning" name="button" value="Upload Media">Upload</button>
+	        </form>
+				</div>
+
+				<!--collage heads -->
+				<div class="table-data">
+					<div class="order">
+						<div class="head">
+							<h3>Gallery</h3>
+							<i class='bx bx-search' ></i>
+							<i class='bx bx-filter' ></i>
+						</div>
+						<table>
+							<thead>
+								<tr>
+									<th>Media</th>
+									<th>Info</th>
+									<th>Activity</th>
+								</tr>
+							</thead>
+							<tbody>
+									<% items.forEach(function(item) {%>
+								<tr>
+									<td>
+										<img src='data:<%= item.contentType %>;base64,<%= item.imageBase64 %>'>
+									</td>
+									<td><p>
+
+										<h4>Media</h4>
+										<h5>Media</h5>
+									</p></td>
+									<form class="" action="/DeleteMedia" method="post">
+									     <td><button type="submit" name="delete" value="<%=item._id%>" class="btn btn-warning">Delete</button></td>
+									  </form>
+								</tr>
+								  <%})%>
+							</tbody>
+						</table>
+					</div>
+				</div>
+
+
+
+
+				<!-- end teacher -->
+			</main>
+		</section>
+
+			<!-- MAIN -->
+		</section>
+
+
+	<script src="/script/adminDashboard.js"></script>
+</body>
+</html>
