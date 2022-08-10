@@ -2,16 +2,8 @@
 <body>
 	<h1>Uploaded Images</h1>
 		<% items.forEach(async function(item) { %>
-				<!-- <% this.forEach({ %>
-					<%if(imageBase64){%> -->
-
-
 						<img src="<%= item.filename %>"" height="300px" width="300px" async="true">
-					<!-- <%}%> -->
-
-
 		<% }) %>
 	<%- include("partials/footer"); %>
 
 
-<!-- <img src='data:<%= contentType %>;base64,<%= imageBase64 %>' height="300px" width="300px"> -->

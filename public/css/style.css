@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans&family=Noto+Sans:ital@1&family=Playfair+Display&family=Raleway:wght@500&family=Roboto+Slab:wght@300&family=Shizuru&display=swap');
 :root{
     --main-color:#fff;
-    --orange:#ff7800;
+    --orange:#673ab7, #813bcb, #9e38de, #bc32ef, #dc22ff;
     --black:#130f40;
     --light-color:#666;
     --box-shadow:0 .5rem 1.5rem rgba(0,0,0,.1);
@@ -10,8 +10,47 @@
     --outline-hover:.2rem solid var(--black);
 }
 
+.animate-charcter
+{
+   text-transform: uppercase;
+  background-image: linear-gradient(
+    -225deg,
+    #673ab7 0%,
+    #813bcb 29%,
+  #9e38de 67%,
+  #bc32ef 100%
+  );
+  background-size: auto auto;
+  background-clip: border-box;
+  background-size: 200% auto;
+  color: #fff;
+  background-clip: text;
+  text-fill-color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textclip 2s linear infinite;
+  display: inline-block;
+      font-size: 50px;
+}
+
+
+/* Here are just some visual styles. 🖌 */
+
+.container {
+  display: grid;
+  place-items: center;
+  text-align: center;
+  height: 100vh
+}
+
+.title {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 800;
+  font-size: 8.5vw;
+  text-transform: uppercase;
+}
 *{
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Playfair Display', serif;
     margin:0;
     padding:0;
     box-sizing: border-box;
@@ -28,6 +67,7 @@ video {
   left: 0;
   width: 1500px;
   height: 1200px;
+ z-index: -100;
 }
 .video-wrapper {
   width: auto;
@@ -38,6 +78,7 @@ video {
   display: flex;
   align-items: center;
   justify-content: center;
+   z-index: -100;
 }
 html{
     font-size: 62.5%;
@@ -51,7 +92,7 @@ html::-webkit-scrollbar{
 }
 
 html::-webkit-scrollbar-track{
-    background: #fff;
+    background: #rgba(255,255,255,0.97);
 }
 
 html::-webkit-scrollbar-thumb{
@@ -74,10 +115,11 @@ section{
     text-transform: uppercase;
     font-size: 3rem;
     letter-spacing: 0.3rem;
+    font-weight: bold;
 }
 
 .heading span{
-    color:red;
+    color:#813bcb;
     text-transform: uppercase;
 }
 
@@ -96,132 +138,394 @@ section{
 .btn:hover{
     background:var(--main-color);
 }
+/* new nav */
+/* CSS Document */
 
-.header{
-    position: fixed;
-    top:0; left: 0; right: 0;
-    z-index: 10000;
-    background: #333;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding:1.5rem 9%;
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+@import url(https://fonts.googleapis.com/css?family=Bree+Serif);
+
+body {
+	background: #212121;
+	font-size:22px;
+	line-height: 32px;
+	color: #ffffff;
+	margin: 0;
+	padding: 0;
+	word-wrap:break-word !important;
+	font-family: 'Open Sans', sans-serif;
+	}
+
+h1 {
+	font-size: 60px;
+	text-align: center;
+	color: #FFF;
 }
 
-.header .logo{
-    font-weight: bolder;
-    color:#f0f0f0;
-    font-size: 2.5rem;
-
-}
-.header .logo span{
-    color:var(--main-color);
+h3 {
+	font-size: 30px;
+	line-height: 34px;
+	text-align: center;
+	color:#813bcb;
 }
 
-.header .navbar a{
-    font-size: 1.1rem;
-    color:#f0f0f0;
-    margin-left: 2rem;
+h3 a {
+	color: #FFF;
 }
 
-.header .navbar a:hover{
-    color:yellow;
+a {
+	color: #FFF;
 }
 
-#menu-bars{
-    font-size: 3rem;
-    color:black;
-    cursor: pointer;
-    display: none;
-}
-/* navbar */
-.logo {
-  color: red;
-  font-size: 25px;
-}
+h1 {
+	margin-top: 100px;
+	text-align:center;
+	font-size:60px;
+	line-height: 70px;
+	font-family: 'Bree Serif', 'serif';
+  color:#813bcb;
+	}
 
-.logo span {
-  color: Black;
+#container {
+	margin: 0 auto;
+	max-width: 890px;
 }
 
-.navbar {
-  background-color:#f0f0f0;
-  height: 100px;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 5%;
-
-  position: relative;
+.toggle,
+[id^=drop] {
+	display: none;
 }
 
-.navbar ul {
-  list-style: none;
-  display: flex;
+/* Giving a background-color to the nav container. */
+nav {
+	margin:0;
+	padding: 0;
+	background-color:white;
+  color: #000000;
 }
 
-.navbar ul li {
-  /* width: 120px; */
-  padding: 10px 30px;
-  /* text-align: center; */
-
-  position: relative;
+#logo {
+	display: block;
+	padding: 0 30px;
+	float: left;
+	font-size:20px;
+	line-height: 60px;
 }
 
-.navbar ul li a {
-  font-size: 16px;
-  color: black;
-  text-decoration: none;
+/* Since we'll have the "ul li" "float:left"
+ * we need to add a clear after the container. */
 
-  transition: all 0.3s;
+nav:after {
+	content:"";
+	display:table;
+	clear:both;
 }
 
-.navbar ul li a:hover {
-  color:red;
+/* Removing padding, margin and "list-style" from the "ul",
+ * and adding "position:reltive" */
+nav ul {
+	float: right;
+	padding:0;
+	margin:0;
+	list-style: none;
+	position: relative;
+	}
+
+/* Positioning the navigation items inline */
+nav ul li {
+	margin: 0px;
+	display:inline-block;
+	float: left;
+	background-color: white;
+  color: #000000;
+	}
+
+/* Styling the links */
+nav a {
+	display:block;
+	padding:14px 20px;
+	color:black;
+	font-size:17px;
+	text-decoration:none;
 }
 
-.fas {
+
+nav ul li ul li:hover { color: #000000; }
+
+/* Background color change on Hover */
+nav a:hover {
+	color: #000000;
+}
+
+/* Hide Dropdowns by Default
+ * and giving it a position of absolute */
+nav ul ul {
+	display: none;
+	position: absolute;
+  color: #000000;
+	/* has to be the same number as the "line-height" of "nav a" */
+	top: 60px;
+}
+
+/* Display Dropdowns on Hover */
+nav ul li:hover > ul {
+	display:inherit;
+    color: #000000;
+}
+
+/* Fisrt Tier Dropdown */
+nav ul ul li {
+	width:170px;
+	float:none;
+	display:list-item;
+	position: relative;
+    color: #000000;
+}
+
+/* Second, Third and more Tiers
+ * We move the 2nd and 3rd etc tier dropdowns to the left
+ * by the amount of the width of the first tier.
+*/
+nav ul ul ul li {
+	position: relative;
+	top:-60px;
+	/* has to be the same number as the "width" of "nav ul ul li" */
+	left:170px;
+    color: #000000;
+}
+
+
+/* Change ' +' in order to change the Dropdown symbol */
+li > a:after { content:  ' +'; }
+li > a:only-child:after { content: ''; }
+
+
+/* Media Queries
+--------------------------------------------- */
+
+@media all and (max-width : 768px) {
+
+	#logo {
+		display: block;
+		padding: 0;
+		width: 100%;
+		text-align: center;
+		float: none;
+	}
+
+	nav {
+		margin: 0;
+	}
+
+	/* Hide the navigation menu by default */
+	/* Also hide the  */
+	.toggle + a,
+	.menu {
+		display: none;
+	}
+
+	/* Stylinf the toggle lable */
+	.toggle {
+		display: block;
+		background-color: white;
+		padding:14px 20px;
+		color:#000000;
+		font-size:17px;
+		text-decoration:none;
+		border:none;
+	}
+
+	.toggle:hover {
+		/* background-color: #000000; */
+	}
+
+	/* Display Dropdown when clicked on Parent Lable */
+	[id^=drop]:checked + ul {
+		display: block;
+	}
+
+	/* Change menu item's width to 100% */
+	nav ul li {
+		display: block;
+		width: 100%;
+      color: #000000;
+		}
+
+	nav ul ul .toggle,
+	nav ul ul a {
+		padding: 0 40px;
+      color: #000000;
+	}
+
+	nav ul ul ul a {
+		padding: 0 80px;
+      color: #000000;
+	}
+
+	nav a:hover,
+ 	nav ul ul ul a {
+		background-color: white;
+      color: #000000;
+	}
+
+	nav ul li ul li .toggle,
+	nav ul ul a,
+  nav ul ul ul a{
+		padding:14px 20px;
+		  color: #000000;
+		font-size:17px;
+	}
+
+
+	nav ul li ul li .toggle,
+	nav ul ul a {
+		background-color: white;
+      color: #000000;
+	}
+
+	/* Hide Dropdowns by Default */
+	nav ul ul {
+		float: none;
+		position:static;
+		color: #000000;
+		/* has to be the same number as the "line-height" of "nav a" */
+	}
+
+	/* Hide menus on hover */
+	nav ul ul li:hover > ul,
+	nav ul li:hover > ul {
+		display: none;
+	}
+
+	/* Fisrt Tier Dropdown */
+	nav ul ul li {
+		display: block;
+		width: 100%;
+	}
+
+	nav ul ul ul li {
+		position: static;
+		/* has to be the same number as the "width" of "nav ul ul li" */
+
+	}
+
+}
+
+@media all and (max-width : 330px) {
+
+	nav ul li {
+		display:block;
+		width: 94%;
+    color:  #000000;
+	}
+
+}
+/* end new nav */
+/* sttart navbar */
+header{
+  z-index: 1001;
+}
+.topnav {
+  overflow: hidden;
+  background-color:white;
+  color:  #000000;
+}
+
+.topnav a {
   float: right;
-  margin-left: 10px;
-  padding-top: 3px;
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
 }
 
-/* dropdown menu style */
-.dropdown-menu {
+
+.topnav .icon {
   display: none;
 }
 
-.navbar ul li:hover .dropdown-menu {
-  display: block;
-  position: absolute;
-  left: 0;
-  top: 100%;
-  background-color: #f0f0f0;
+.dropdown {
+  float:right;
+  overflow: hidden;
+  z-index: 1000;
 }
 
-.navbar ul li:hover .dropdown-menu ul {
-  display: block;
-  margin: 10px;
+.dropdown .dropbtn {
+  font-size: 17px;
+  border: none;
+  outline: none;
+  color: black;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
 }
 
-.navbar ul li:hover .dropdown-menu ul li {
-  width: 150px;
-  padding: 10px;
-}
-
-.dropdown-menu-1 {
+.dropdown-content {
   display: none;
-}
-
-.dropdown-menu ul li:hover .dropdown-menu-1 {
-  display: block;
   position: absolute;
-  left: 150px;
-  top: 0;
-  background-color: var(--color-black);
+  background-color:white;
+  color:  #000000
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
 }
 
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: center;
+}
+
+.topnav a:hover, .dropdown:hover .dropbtn {
+  background-color: white;
+  color:  #000000;
+}
+
+.dropdown-content a:hover {
+  background-color: white;
+  color:  #000000;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+@media screen and (max-width: 600px) {
+  .topnav a:not(:first-child), .dropdown .dropbtn {
+    display: none;
+  }
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+
+}
+
+@media screen and (max-width: 600px) {
+  .topnav.responsive {position: relative;}
+  .topnav.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+  .topnav.responsive .dropdown {float: none;}
+  .topnav.responsive .dropdown-content {position: relative;}
+  .topnav.responsive .dropdown .dropbtn {
+    display: block;
+    width: 100%;
+    text-align: left;
+  }
+}
 /* navbar end */
 body {
 	font-family: 'Raleway', sans-serif;
@@ -229,7 +533,7 @@ body {
 header .carousel-inner .item {
 	height: 100vh;
 }
-.navbar-inverse {
+/* .navbar-inverse {
 	background-color: black;
 	border-color: black;
 }
@@ -245,7 +549,7 @@ header .carousel-inner .item {
 .navbar-inverse .navbar-nav>li>a {
 	color: #fff;
 	text-transform: uppercase;
-}
+/* } */
 .banner {
 	-webkit-background-size: cover;
 	background-size: cover;
@@ -263,10 +567,10 @@ header .carousel-inner .item {
 	font-weight: bold;
 }
 .carousel-caption h2 span {
-	color: #EDBB00;
+	color: #813bcb;
 }
 .carousel-caption a {
-	background: #EDBB00;
+	background: ##813bcb;
 	padding: 15px 35px;
 	display: inline-block;
 	margin-top: 15px;
@@ -281,8 +585,8 @@ header .carousel-inner .item {
 	background-image: none;
 }
 .carousel-indicators .active {
-	background-color: #EDBB00;
-	border-color: #EDBB00;
+	background-color: #813bcb;
+	border-color:#813bcb;
 }
 /*responsive css*/
 @media only screen and (min-width: 768px) and (max-width: 991px) {
@@ -298,9 +602,9 @@ header .carousel-inner .item {
 		font-size: 30px;
 		padding: 20px 15px;
 	}
-	/* .navbar-collapse {
+	 .navbar-collapse {
 		background: rgba(0, 0, 0, 0.5);
-	 } */
+	 }
 	.carousel-caption {
 		padding-bottom: 120px;
 	}
@@ -331,87 +635,61 @@ header .carousel-inner .item {
     background:var(--main-color);
 }
 /*Eventcollection start from here*/
-.EventCollection .content{
-    text-align: center;
-    padding-top: 6rem;
-    margin:2rem auto;
-    max-width: 70rem;
+/* starrt */
+.gallery{
+  margin: 5px;
+}
+.gallery h2{
+  text-align: center;
+}
+div.gallery {
+  border: 1px solid #ccc;
 }
 
-.EventCollection .content h3{
-    color:black;
-    font-size: 3rem;
-    letter-spacing: 0.3rem;
-    text-transform: uppercase;
+div.gallery:hover {
+  border: 1px solid #777;
 }
 
-.EventCollection .content h3 span{
-    color:red;
-    text-transform: uppercase;
+div.gallery img {
+  width: 100%;
+  height: auto;
 }
 
-.EventCollection .home-slider .swiper-slide{
-    overflow: hidden;
-    border-radius: .5rem;
-    height: 50rem;
-    width:35rem;
+div.desc {
+  padding: 15px;
+  text-align: center;
 }
 
-.EventCollection .home-slider .swiper-slide img{
-    height:100%;
-    width:100%;
-    object-fit: cover;
-}
-/* service start here */
-.service{
-  margin-left: 30px;
-}
-.service .review-slider{
-    padding:1rem;
+* {
+  box-sizing: border-box;
 }
 
-.service .review-slider .box{
-    background: #fff;
-    border-radius: .5rem;
-    text-align: center;
-    padding:3rem 2rem;
-    outline-offset: -1rem;
-    outline: var(--outline);
-    box-shadow: var(--box-shadow);
-    transition: .2s linear;
+.responsive {
+  padding: 0 6px;
+  float: left;
+  width: 24.99999%;
 }
 
-.service .review-slider .box:hover{
-    outline:var(--outline-hover);
-    outline-offset: 0rem;
+@media only screen and (max-width: 700px) {
+  .responsive {
+    width: 49.99999%;
+    margin: 6px 0;
+  }
 }
 
-.service .review-slider .box img{
-    height:10rem;
-    width:10rem;
-    border-radius: 50%;
+@media only screen and (max-width: 500px) {
+  .responsive {
+    width: 100%;
+  }
 }
 
-.service .review-slider .box p{
-    padding:1rem 0;
-    line-height: 1.8;
-    color:var(--light-color);
-    font-size: 1.5rem;
-}
-
-.service .review-slider .box h3{
-    padding-bottom: .5rem;
-    color:var(--black);
-    font-size: 2.2rem;
-}
-
-.service .review-slider .box .stars i{
-    color:var(--orange);
-    font-size: 1.7rem;
-}
-
-/* service end here */
-
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}*/
+/* end */
+/* end gallery */
 
 /* about start here */
 .about{
@@ -525,9 +803,12 @@ header .carousel-inner .item {
     padding-right: .5rem;
 }
 /* review start from here */
+.reivew{
+  padding-bottom: 50px;
+}
 .container1{
     width: 100%;
-    height: 100vh;
+    height: 50vh;
     background: white;
     position: relative;
 }
@@ -580,7 +861,7 @@ header .carousel-inner .item {
     margin: 60px 0 30px;
 }
 .user p::before{
-    content: '\201C';
+
     font-size: 120px;
     height: 0;
     display: inline-block;
@@ -588,7 +869,7 @@ header .carousel-inner .item {
     margin-right: 10px;
 }
 .user p::after{
-    content: '\201D';
+    
     font-size: 120px;
     height: 0;
     display: inline-block;
@@ -793,38 +1074,6 @@ header .carousel-inner .item {
 
 @media (max-width:768px){
 
-    #menu-bars{
-        display: initial;
-    }
-
-    .header .navbar{
-        position: absolute;
-        top:100%; left:0; right:0;
-        border-top: .1rem solid #222;
-        background: #333;
-        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
-    }
-
-    .header .navbar.active{
-        clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
-    }
-
-    .fa-times{
-        transform: rotate(180deg);
-    }
-
-    .header .navbar a{
-        display: flex;
-        background:#222;
-        border-radius: .5rem;
-        padding:1.3rem;
-        margin:1.3rem;
-        font-size: 2rem;
-    }
-
-    .EventCollection .content h3{
-        font-size: 4rem;
-    }
 
 }
 
@@ -842,4 +1091,55 @@ header .carousel-inner .item {
         width: 100%;
     }
 
+}
+
+
+.home{
+  display: flex;
+  flex-wrap: wrap;
+  gap:1.5rem;
+  min-height: 100vh;
+  align-items: center;
+  background:url(../images/home-bg.jpg) no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.home .content{
+  flex:1 1 40rem;
+  padding-top: 6.5rem;
+}
+
+.home .image{
+  flex:1 1 40rem;
+}
+
+.home .image img{
+  width:100%;
+  padding:1rem;
+  animation:float 3s linear infinite;
+}
+
+@keyframes float{
+  0%, 100%{
+    transform: translateY(0rem);
+  }
+  50%{
+    transform: translateY(3rem);
+  }
+}
+
+.home .content h3{
+  font-size: 5rem;
+  color:#333;
+}
+
+.home .content p{
+  font-size: 1.7rem;
+  color:#666;
+  padding:1rem 0;
+}
+img .gal{
+  width: 600px;
+  height: 400px;
 }

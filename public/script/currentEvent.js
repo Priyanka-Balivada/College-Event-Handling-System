@@ -1,6 +1,6 @@
 const countdown = () => {
   // Specify the date and time we are counting down to.
-  const countDate = new Date("Jan 1, 2035 00:00:00").getTime();
+  const countDate = new Date("June 29, 2022 4:00:00").getTime();
   const now = new Date().getTime();
   const remainingTime = countDate - now;
 

@@ -51,18 +51,20 @@
 .event .event-left {
   background: #222;
   min-width: 82px;
-  display: flex;
+  max-width: 350px;
+  /* display: flex; */
   align-items: center;
   justify-content: center;
   color: #eee;
   padding: 8px 48px;
+  padding-top: 40px;
   font-weight: bold;
   text-align: center;
   border-radius: 8px 0 0 8px;
 }
 
 .event .event-left .date {
-  font-size: 56px;
+  font-size: 30px;
 }
 
 .event .event-left .month {
@@ -94,6 +96,7 @@
   border-radius: 16px;
   margin: 24px 0;
   font-size: 14px;
+  color: #222;
 }
 
 .event .event-right .event-timing img {
@@ -113,15 +116,40 @@
 
   .event .event-left .event-date .date,
   .event .event-left .event-date .month {
-    display: inline-block;
+    display: block;
     font-size: 24px;
   }
 
   .event .event-left .event-date {
+    font-size: 20px;
     padding: 10px 0;
+    display: block;
+    
   }
 }
 
 .event-description{
+  font-weight:bold;
+  width: 400px;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  font-size: 20px;
   color:white;
+}
+
+.register{
+  padding-top: 10px;
+  padding-bottom: 10px;
+  
+}
+
+
+.poll{
+  padding-top: 50px;
+}
+
+#event{
+  padding-bottom: 30px;
+  padding-top: 20px;
 }

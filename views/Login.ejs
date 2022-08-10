@@ -14,11 +14,6 @@
     <div class="container">
       <div class="forms-container">
         <div class="signin-signup">
-        <%  if(success !=''){ %>
-          <div class="alert alert-success">
-            <%= success %>
-          </div>
-        <% } %>
           <form action="/Login" method="post" class="sign-in-form">
             <h2 class="title">Sign in</h2>
             <div class="input-field">
@@ -55,6 +50,10 @@
             <div class="input-field">
               <i class="fas fa-envelope"></i>
               <input type="email" placeholder="Email" name="email" />
+            </div>
+            <div class="input-field">
+              <i class="fas fa-envelope"></i>
+              <input type="text" placeholder="mobile_no" name="mobile_no" />
             </div>
             <div class="input-field">
               <i class="fas fa-lock"></i>
