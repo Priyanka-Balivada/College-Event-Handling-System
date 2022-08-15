@@ -71,7 +71,7 @@
 
     <script src="https://js.pusher.com/4.1/pusher.min.js"></script>
     <script>
-        var pusher = new Pusher('22789a5356f573c4df49', { cluster: 'ap2' });
+        var pusher = new Pusher(process.env.KEY,{ cluster: process.env.CLUSTER });
         var socketId;
 
         // retrieve the socket ID once we're connected

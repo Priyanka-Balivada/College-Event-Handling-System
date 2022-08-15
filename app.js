@@ -12,6 +12,7 @@ require('dotenv').config();
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
+require('dotenv').config();
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -24,17 +25,19 @@ app.use(cookieParser());
 
 let Pusher = require('pusher');
 let pusher = new Pusher({
-  appId: "1421984",
-  key: "22789a5356f573c4df49",
-  secret: "60c1be80085f664a1c0f",
-  cluster: "ap2"
+  appId: process.env.APP_ID,
+  key: process.env.KEY,
+  secret: process.env.SECRET,
+  cluster: process.env.CLUSTER
 })
 
 const value = 1;
 
 // database
-// mongoose.connect("mongodb+srv://Priyanka:MZyp9ljETdeA4zCQ@event.sa05bsq.mongodb.net/EventDB");
-mongoose.connect("mongodb://localhost:27017/EventDB");
+const DBusername=process.env.USERNAME;
+const DBpassword=process.env.PASSWORD;
+mongoose.connect("mongodb+srv://"+DBusername+":"+DBpassword+"@cluster0.fpfvpl9.mongodb.net/EventDB");
+// mongoose.connect("mongodb://localhost:27017/EventDB");
 
 //schemas
 
@@ -777,7 +780,7 @@ app.post("/Studentregister", function(req, res) {
     email: req.body.email,
     mobile_no: req.body.mobile_no,
     password: req.body.password
-    
+
 
   });
 
@@ -859,11 +862,11 @@ app.post("/deleteAccount", function(req, res) {
             notifier.notify('Invalid Credentials');
           }
         }
-        
+
       });
-      
+
       res.redirect("/adminDashboard#Account");
-      
+
     });
 
 
@@ -1172,7 +1175,7 @@ app.post("/DeletePoll",function(req,res){
       }else{
         res.redirect("/studentRepresentativeDashboard#Poll");
       }
-      
+
     }
   });
 })
@@ -1180,7 +1183,7 @@ app.post("/DeletePoll",function(req,res){
 app.post('/:pollId/vote', (req, res, next) => {
   const choice = req.body.choice;
   var pollEvent;
-  
+
 
 
   Poll.findById({
@@ -1226,7 +1229,7 @@ app.get("/pollResults", function(req, res) {
 
 
 
- 
+
 
 
 })
@@ -1531,7 +1534,7 @@ app.get("/profile", function(req, res) {
         res.render('index', {
           items: items,
           buttonTitle: "Logout",
-          buttonLink: "/" 
+          buttonLink: "/"
         });
       }
     })
@@ -1542,11 +1545,11 @@ app.get("/profile", function(req, res) {
 
      else if (login == "tRepresentive") {
             res.redirect("/teacherRepresentativeDashboard");
-         
-  } else if (login == "sRepresentive") {  
-          
+
+  } else if (login == "sRepresentive") {
+
             res.redirect("/studentRepresentativeDashboard");
-          
+
         }
    else
     res.render("partials/Error");
@@ -1581,7 +1584,7 @@ app.post("/participant", function (req, res){
   EventRegister.find({event:postid}, function(err, eventRegister) {
     if (err) {
       console.log(err);
-      
+
     } else{
       if(eventRegister){
         console.log(eventRegister);
@@ -1591,7 +1594,7 @@ app.post("/participant", function (req, res){
     }else{
       console.log("No data");
     }
-    }  
+    }
 })
 });
 
@@ -1644,7 +1647,7 @@ app.get("/quiz", function(req,res){
 })
 //Logout
 app.get("/logout", function(req, res){
-  
+
   delete req.session;
   //req.logout();
   res.redirect("/Login");
@@ -1655,4 +1658,3 @@ app.get("/logout", function(req, res){
 app.listen(3000, function() {
   console.log("Server started on port 3000");
 });
-
