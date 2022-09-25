@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+  <title>COM'E'IT</title>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Previous Events</title>
@@ -13,7 +14,16 @@
 <body>
 
   <header class="header">
+
     <div class="img-wrapper">
+      <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="#previousEvent">Previous Events</a></li>
+            <li><a href="#winners">Winners</a></li>
+            <li><a href="#plans">Our Plans</a></li>
+        </ul>
+      </nav>
       <img src="images/previousEventImages/bg1.jpg" />
     </div>
     <div class="banner">
@@ -22,9 +32,9 @@
       <button>Discover now</button>
     </div>
   </header>
-  
+
   <!--Previous_Events start-->
-  <section class="speciality" id="speciality">
+  <section class="speciality" id="previousEvent">
 
     <div class="section-header">
       <h1 class="section-heading">Previous Events</h1>
@@ -34,9 +44,9 @@
 
     <div class="box-container">
       <% previousEvents.forEach(function(previousEvent){ %>
-      <div class="box">  
+      <div class="box">
         <div class="content">
-          
+
           <h3><%= previousEvent.title %></h></h3>
           <p><%= previousEvent.content %></p></p>
         </div>
@@ -48,7 +58,7 @@
   </section>
 
   <!--Previous_Events -->
-  <section class="winners">
+  <section class="winners" id="winners">
     <div class="section-header">
       <h1 class="section-heading">Winners</h1>
       <div class="underline"></div>
@@ -56,51 +66,48 @@
     <div class="cards-wrapper">
       <div class="card" data-tilt>
         <div class="card-img-wrapper">
-          <img src="images/previousEventImages/person-1.jpg" alt="CEO" />
+          <img src="../images/previousEventImages/sakshi.jpg" alt="CEO" />
         </div>
         <div class="card-info">
-          <h2>John Smith</h2>
-          <h3>CEO</h3>
+          <h2>Sakshi Lawande</h2>
+          <h3>1st</h3>
           <p>
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Asperiores, impedit!"
+          Quiz Competition 2k21
           </p>
-          <button>Read More</button>
+
         </div>
       </div>
       <div class="card" data-tilt>
         <div class="card-img-wrapper">
-          <img src="images/previousEventImages/person-2.jpg" alt="Designer" />
+          <img src="images/previousEventImages/Shru.jpeg" alt="Designer" />
         </div>
         <div class="card-info">
-          <h2>Ann Brown</h2>
-          <h3>Designer</h3>
+          <h2>Srushti Walunj</h2>
+          <h3>2nd</h3>
           <p>
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Asperiores, impedit!"
+            Wall Magzine
           </p>
-          <button>Read More</button>
+
         </div>
       </div>
 
       <div class="card" data-tilt>
         <div class="card-img-wrapper">
-          <img src="images/previousEventImages/person-3.jpg" alt="Architect" />
+          <img src="images/previousEventImages/rutu.jpeg" alt="Architect" />
         </div>
         <div class="card-info">
-          <h2>Mary Doe</h2>
-          <h3>Architect</h3>
+          <h2>Rutuja Sonawane</h2>
+          <h3>3rd</h3>
           <p>
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Asperiores, impedit!"
+            Project Competition
           </p>
-          <button>Read More</button>
+
         </div>
       </div>
     </div>
   </section>
 
-  <section class="comming_soon">
+  <section class="comming_soon" id="plans">
     <div class="section-header">
       <h1 class="section-heading">Our Plans... For You...</h1>
       <div class="underline"></div>

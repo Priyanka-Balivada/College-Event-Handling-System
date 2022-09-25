@@ -12,7 +12,7 @@
 
 body{
   min-height: 100vh;
-  background: url(../images/contact.jpeg) no-repeat;
+  background: url(../images/background.jpg) no-repeat;
   background-size: cover;
   display: flex;
   justify-content: center;
@@ -27,7 +27,7 @@ body{
 }
 
 .contact-info{
-  color: rgb(74, 74, 209);
+  color: white;
   max-width: 500px;
   line-height: 65px;
   padding-left: 50px;
@@ -38,7 +38,7 @@ body{
 .contact-info i{
   margin-right: 20px;
   font-size: 25px;
-  color: blue;
+  color: white;
 }
 
 .contact-form{
@@ -60,7 +60,7 @@ body{
 
 .contact-form .text-box{
   background: #f0f0f0;;
-  color: #fff;
+  color: black;
   border: none;
   width: calc(50% - 10px);
   height: 50px;
@@ -90,7 +90,7 @@ body{
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
   opacity: 0.9;
-  
+
 }
 
 .contact-form .send-btn{

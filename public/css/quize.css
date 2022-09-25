@@ -8,7 +8,7 @@
 }
 
 body{
-    background: url(images/backQuize.jpg )no-repeat;
+    background: url(../images/backQuize.jpg)no-repeat;
     padding-top: 0px;
     background-size:1700px 750px;
     height: 750px;
